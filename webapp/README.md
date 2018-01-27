@@ -1,5 +1,9 @@
 #WEB APP SCAFFOLDING
 
+## Table of Contents
+1) Create file structure
+2) initialize
+
 ## Steps
 
   - **(1)** Create the following File Structure:
@@ -20,9 +24,8 @@
 
     `npm init`
 
-    > It creates the package.json file.
-
-    > To save dependencies and  development dependencies:
+    >It creates the package.json file.
+    To save dependencies and  development dependencies:
 
     - `npm install --save-dev ____`
     - `npm install --save ____`
@@ -36,7 +39,7 @@
     }
     ```
 
-  - [Step 4] Add Webpack to bundle React modules and Babel to transpile the modules before bundling:
+  - **(4)** Add Webpack to bundle React modules and Babel to transpile the modules before bundling:
 
     > Create a webpack.config.js file in the root directory with the following code:
 
@@ -65,31 +68,64 @@
       }
     };
     ```
+    
+    >Then npm install the following:
+    
+    ```javascript
+    npm install --save-dev babel-core
+    npm install --save-dev babel-loader
+    npm install --save-dev babel-preset-es2015  //transpiles ES6 to ES5
+    npm install --save-dev babel-preset-react   //transpiles JSX to JS
+    npm install --save-dev webpack
+    
+    //OR
+    npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react webpack
+    ```
+    
+    >Then add a script to package.json to run webpack:
+    
+    ```javascript
+    "scripts": {
+      "build": "webpack -p",
+      "react-dev": "webpack -d --watch" //it is set to watch for automating bundling in development
+    }
+    ```
 
-  Then npm install the following:
-  >npm install --save-dev babel-core
-  >npm install --save-dev babel-loader
-  >npm install --save-dev babel-preset-es2015  //transpiles ES6 to ES5
-  >npm install --save-dev babel-preset-react   //transpiles JSX to JS
-  >npm install --save-dev webpack
+- **(5)** Add .gitignore file to ignore:
 
-  or
-  >npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react webpack
+  - `node_modules`
+  - `bundle.js`
+  
+- **(6)** Add Airbnb ESLint:
 
-  Then add a script to package.json to run webpack:
-  "scripts": {
-    "build": "webpack -p",
-    "react-dev": "webpack -d --watch" //it is set to watch for automating bundling in development
-  }
+  >Create a .eslintrc.js file in the root directory and store the following:
 
-  //----------------------------------------------
-  5) Add .gitignore file to ignore:
+  ```javascript
+  module.exports = {
+    "extends": "airbnb-base",
+    "plugins": [
+        "react",
+        "import"
+    ]
+  };
+  ```
+  
+  >Then npm install the following:
+  
+  ```javascript
+  npm install --save-dev eslint
+  npm install --save-dev eslint-plugin-import
+  npm install --save-dev eslint-plugin-react  //React specific linting rules for ESLint https://github.com/yannickcr/eslint-plugin-react
+  
+  //OR
+  npm install --save-dev eslint eslint-plugin-import eslint-plugin-react
+  ```
+  
+  >Reference: https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base
 
-  node_modules
-  bundle.js
-
-  //----------------------------------------------
-  6)
-
-
+  >[The ESlint extension in VScode will read the .eslintrc file and work.](https://travishorn.com/setting-up-eslint-on-vs-code-with-airbnb-javascript-style-guide-6eb78a535ba6)
+  To disable the linter in any document of code, write the following at the top of the document:
+  ```javascript
+  /*eslint-disable */
+  ```
 
