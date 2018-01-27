@@ -1,12 +1,16 @@
 #WEB APP SCAFFOLDING
 
 ## Table of Contents
-1) Create file structure
-2) initialize
+1. [Create file structure](#1)
+1. [Initialize Node Project](#2)
+1. [Add scripts to package.json](#3)
+1. [Add Webpack and Babel](#4)
+1. [Add .gitignore file](#5)
+1. [Add Airbnb ESLint](#6)
 
 ## Steps
-
-  - **(1)** Create the following File Structure:
+  <a name="1"></a>
+  - ([1](#1)) Create the following File Structure:
 
     - `client`
     - `dist`  //folder contains all files that will be distributed
@@ -20,7 +24,8 @@
     - `server`
       - `index.js` //file contains routing and setting up server connection
 
-  - **(2)** Initialize node project by running:
+  <a name="2"></a>
+  - ([2](#2)) Initialize node project by running:
 
     `npm init`
 
@@ -30,7 +35,8 @@
     - `npm install --save-dev ____`
     - `npm install --save ____`
 
-  - **(3)** Add scripts to package.json:
+  <a name="3"></a>
+  - ([3](#3)) Add scripts to package.json:
 
     ```javascript
     "scripts": {
@@ -38,8 +44,8 @@
       "server": "nodemon server/index.js"  //make sure nodemon is npm installed
     }
     ```
-
-  - **(4)** Add Webpack to bundle React modules and Babel to transpile the modules before bundling:
+  <a name="4"></a>
+  - ([4](#4)) Add Webpack to bundle React modules and Babel to transpile the modules before bundling:
 
     > Create a webpack.config.js file in the root directory with the following code:
 
@@ -90,13 +96,14 @@
       "react-dev": "webpack -d --watch" //it is set to watch for automating bundling in development
     }
     ```
-
-- **(5)** Add .gitignore file to ignore:
+<a name="5"></a>
+- ([5](#5)) Add .gitignore file to ignore:
 
   - `node_modules`
   - `bundle.js`
-  
-- **(6)** Add Airbnb ESLint:
+
+<a name="6"></a>
+- ([6](#6)) Add Airbnb ESLint:
 
   >Create a .eslintrc.js file in the root directory and store the following:
 
