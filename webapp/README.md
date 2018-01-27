@@ -13,12 +13,12 @@
   - ([1](#1)) Create the following File Structure:
 
     - `client`
-    - `dist`  //folder contains all files that will be distributed
-      - `index.html`
-      - `styles.css`
-    - `src`
-      - `components`  //folder to contains all React Components
-      - `index.jsx` //file creates initial React component
+      - `dist`  //folder contains all files that will be distributed
+        - `index.html`
+        - `styles.css`
+      - `src`
+        - `components`  //folder to contains all React Components
+        - `index.jsx` //file creates initial React component
     - `database`
       - `index.js`  //file contains CRUD functions and DB initialization
     - `server`
@@ -74,22 +74,22 @@
       }
     };
     ```
-    
+
     >Then npm install the following:
-    
+
     ```javascript
     npm install --save-dev babel-core
     npm install --save-dev babel-loader
     npm install --save-dev babel-preset-es2015  //transpiles ES6 to ES5
     npm install --save-dev babel-preset-react   //transpiles JSX to JS
     npm install --save-dev webpack
-    
+
     //OR
     npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react webpack
     ```
-    
+
     >Then add a script to package.json to run webpack:
-    
+
     ```javascript
     "scripts": {
       "build": "webpack -p",
@@ -116,18 +116,18 @@
     ]
   };
   ```
-  
+
   >Then npm install the following:
-  
+
   ```javascript
   npm install --save-dev eslint
   npm install --save-dev eslint-plugin-import
   npm install --save-dev eslint-plugin-react  //React specific linting rules for ESLint https://github.com/yannickcr/eslint-plugin-react
-  
+
   //OR
   npm install --save-dev eslint eslint-plugin-import eslint-plugin-react
   ```
-  
+
   >Reference: https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base
 
   >[The ESlint extension in VScode will read the .eslintrc file and work.](https://travishorn.com/setting-up-eslint-on-vs-code-with-airbnb-javascript-style-guide-6eb78a535ba6)
