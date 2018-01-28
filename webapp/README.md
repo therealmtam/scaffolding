@@ -1,16 +1,28 @@
-#WEB APP SCAFFOLDING
-
+## WEB APP SCAFFOLDING
+  These instructions are for creating the scaffolding of a React + Node + Express + (Choice of DB(s)).
+  
 ## Table of Contents
-1. [Create file structure](#1)
-1. [Initialize Node Project](#2)
-1. [Add scripts to package.json](#3)
-1. [Add Webpack and Babel](#4)
-1. [Add .gitignore file](#5)
-1. [Add Airbnb ESLint](#6)
+[**PART I**](#1) - Development Setup:
+1. [Create file structure](#1-1)
+1. [Initialize Node Project](#1-2)
+1. [Add scripts to package.json](#1-3)
+1. [Add Webpack and Babel](#1-4)
+1. [Add .gitignore file](#1-5)
+1. [Add Airbnb ESLint](#1-6)
 
-## Steps
-  <a name="1"></a>
-  - ([1](#1)) Create the following File Structure:
+[**PART II**](#2) - Technology Setup:
+1. [Setup Express](#2-express)
+1. [Setup React](#2-react)
+1. [Setup Database](#2-database)
+    1. [Setup MongoDB](#2-mongodb)
+    1. [Setup MySQL](#2-mysql)
+1. [Setup Mocha & Chai](#2-mocha)
+1. [Setup Jasmine & Enzyme](#2-jasmine)
+
+<a name="1"></a>
+## Part I
+  <a name="1-1"></a>
+  - ([1](#1-1)) Create the following File Structure:
 
     - `client`
       - `dist`  //folder contains all files that will be distributed
@@ -24,8 +36,8 @@
     - `server`
       - `index.js` //file contains routing and setting up server connection
 
-  <a name="2"></a>
-  - ([2](#2)) Initialize node project by running:
+  <a name="1-2"></a>
+  - ([2](#1-2)) Initialize node project by running:
 
     `npm init`
 
@@ -35,8 +47,8 @@
     - `npm install --save-dev ____`
     - `npm install --save ____`
 
-  <a name="3"></a>
-  - ([3](#3)) Add scripts to package.json:
+  <a name="1-3"></a>
+  - ([3](#1-3)) Add scripts to package.json:
 
     ```javascript
     "scripts": {
@@ -44,8 +56,8 @@
       "server": "nodemon server/index.js"  //make sure nodemon is npm installed
     }
     ```
-  <a name="4"></a>
-  - ([4](#4)) Add Webpack to bundle React modules and Babel to transpile the modules before bundling:
+  <a name="1-4"></a>
+  - ([4](#1-4)) Add Webpack to bundle React modules and Babel to transpile the modules before bundling:
 
     > Create a webpack.config.js file in the root directory with the following code:
 
@@ -96,14 +108,14 @@
       "react-dev": "webpack -d --watch" //it is set to watch for automating bundling in development
     }
     ```
-<a name="5"></a>
-- ([5](#5)) Add .gitignore file to ignore:
+<a name="1-5"></a>
+- ([5](#1-5)) Add .gitignore file to ignore:
 
   - `node_modules`
   - `bundle.js`
 
-<a name="6"></a>
-- ([6](#6)) Add Airbnb ESLint:
+<a name="1-6"></a>
+- ([6](#1-6)) Add Airbnb ESLint:
 
   >Create a .eslintrc.js file in the root directory and store the following:
 
@@ -136,3 +148,28 @@
   /*eslint-disable */
   ```
 
+<a name="2"></a>
+## PART II
+  <a name="2-express"></a>
+  - [**Setup Express**](#2-express)
+  
+  <a name="2-react"></a>
+  - [**Setup React**](#2-react)
+  
+  <a name="2-database"></a>
+  - [**Setup Database**](#2-database)
+  
+      <a name="2-mongodb"></a>
+    - [**Setup MongoDB**](#2-mongodb)
+    
+      <a name="2-mysql"></a>
+    - [**Setup MySQL**](#2-mysql)
+    
+  <a name="2-mocha"></a>
+  - [**Setup Mocha & Chai**](#2-mocha)
+  
+  <a name="2-jasmine"></a>  
+  - [**Setup Jasmine & Enzyme**](#2-jasmine)   
+
+  
+ 
