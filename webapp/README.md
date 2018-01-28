@@ -27,7 +27,7 @@
     - `client`
       - `dist`  //folder contains all files that will be distributed
         - `index.html`
-        - `styles.css`
+        - `style.css`
       - `src`
         - `components`  //folder to contains all React Components
         - `index.jsx` //file creates initial React component
