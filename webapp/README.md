@@ -178,6 +178,17 @@
       ...And create a <code>app.jsx</code> file in the <code>components</code> folder.
       
       App.jsx will be the initial React component.
+      
+    - (3) App.jsx scaffold:
+      ```javascript
+      
+      ```
+      Notes: 
+      - Add documentation to all functions and components
+      - Add Prop Types and npm install the module
+        ```javascript
+        npm install --save prop-types
+        ```
   
   <a name="2-database"></a>
   - [**Setup Database**](#2-database)
