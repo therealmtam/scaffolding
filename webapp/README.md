@@ -133,11 +133,12 @@
 
   ```javascript
   npm install --save-dev eslint
+  npm install --save-dev eslint-config-airbnb-base
   npm install --save-dev eslint-plugin-import
   npm install --save-dev eslint-plugin-react  //React specific linting rules for ESLint https://github.com/yannickcr/eslint-plugin-react
 
   //OR
-  npm install --save-dev eslint eslint-plugin-import eslint-plugin-react
+  npm install --save-dev eslint eslint-config-airbnb-base eslint-plugin-import eslint-plugin-react
   ```
 
   >Reference: https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base
@@ -155,6 +156,28 @@
   
   <a name="2-react"></a>
   - [**Setup React**](#2-react)
+    - (1) In index.html, add the initial element for React to target:
+      ```javascript
+      <div id="app"></div>
+      ```
+    - (2) In index.jsx, add the initial React script that renders the React Components
+      ```javascript
+      import React from 'react';
+      import ReactDOM from 'react-dom';
+      import App from './components/app.jsx';
+      
+      ReactDOM.render(<App /> , document.getElementById('app'));
+      ```
+      ...And npm install the modules:
+      ```javascript
+      npm install --save react
+      npm install --save react-dom
+      OR
+      npm install --save react react-dom
+      ```
+      ...And create a <code>app.jsx</code> file in the <code>components</code> folder.
+      
+      App.jsx will be the initial React component.
   
   <a name="2-database"></a>
   - [**Setup Database**](#2-database)
