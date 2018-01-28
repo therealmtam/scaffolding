@@ -157,9 +157,16 @@
   <a name="2-react"></a>
   - [**Setup React**](#2-react)
     - (1) In index.html, add the initial element for React to target:
-      ```javascript
+      ```html
       <div id="app"></div>
+      
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <script type="text/javascript" src="bundle.js"></script>
       ```
+      Make sure the CSS and bundle.js are AFTER the element. Otherwise if they
+      are in the head, the html parser will read the bundle's React code but 
+      won't be able to find the targeted element on the DOM yet and throw a runtime error.
+      
     - (2) In index.jsx, add the initial React script that renders the React Components
       ```javascript
       import React from 'react';
