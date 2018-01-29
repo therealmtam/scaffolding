@@ -153,7 +153,11 @@
 ## PART II
   <a name="2-express"></a>
   - [**Setup Express**](#2-express)
-  
+    - (1) In <code>webapp > server > index.js</code>, scaffold the following:
+    ```javascript
+    
+    ```
+
   <a name="2-react"></a>
   - [**Setup React**](#2-react)
     - (1) In index.html, add the initial element for React to target:
@@ -257,6 +261,10 @@
         Prop Types will throw warnings into the console in case
         an incorrect prop is passed in.
   
+    - (4) For Additional Helpful React Info, see the ever-evolving document
+    
+        in <code>webapp > client > components > helpfulReactInfo.js</code>
+
   <a name="2-database"></a>
   - [**Setup Database**](#2-database)
   
