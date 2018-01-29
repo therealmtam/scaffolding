@@ -195,6 +195,8 @@
         ```javascript
         npm install --save prop-types
         ```
+        Prop Types will throw warnings into the console in case
+        an incorrect prop is passed in.
   
   <a name="2-database"></a>
   - [**Setup Database**](#2-database)
