@@ -221,7 +221,7 @@
       });
       ```
       
-    - (4) For Additional Helpful Node Info, see the ever-evolving document
+    - (2) For Additional Helpful Node Info, see the ever-evolving document
     
         in <code>webapp > server > helpfulNodeInfo.js</code>
         
