@@ -1,5 +1,4 @@
 // HELPFUL REACT INFO:
-
 //-----------------------------------------------
 // General Notes:
 
@@ -94,17 +93,6 @@
   5) Use PropTypes to throw WARNINGS into the console during runtime
   so that other developers using your code will be warned if they are
   improperly passing in props to a component.
-
-  6) Place CSS style sheets in the HEAD tag because:
-
-    It is recommended because when you have the CSS declared before <body> starts,
-    your styles has actually loaded already. So very quickly users see something
-    appear on their screen (e.g. background colors). If not, users see blank screen
-    for some time before the CSS reaches the user.
-
-    Also, if you leave the the styles somewhere in the <body>, the browser has to
-    re-render the page (new and old when loading) when the styles declared has
-    been parsed.
 
 //-----------------------------------------------
 // Inline React Component Styling:

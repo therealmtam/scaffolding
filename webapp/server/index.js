@@ -6,10 +6,9 @@ const app = express();
 // HELPER MODULES:
 /*
   These modules are functions developed by us.
-  example) const handleCSV = require('./helpers/handleCSV.js');
   Note: the relative file path.
 */
-
+const helperModule = require('./helpers/helper1.js');
 //-------------------------------------------------------------------
 // MIDDLEWARE USED PRIOR TO ALL ROUTING:
 /*
@@ -34,19 +33,25 @@ app.use(express.static(`${__dirname}/../client/dist`));
   301 - Moved Permanently - Endpoing has been reassigned. The new URI is returned
   400 - Bad request - Req has invalid syntax.
   404 - URL is not recognized (ie. endpoint not valid)
+
+  If .status() is omitted, the response status will default to typical values:
+  ex. GET's response.send() = status 200 / response.redirect() = status 301
+
+  Use .status() to send a different status code:
+  ex. GET's response.status(500) = will show on the client as Internal Server Error
 */
 
 //------------------------------------------
 app.get('/testget', (request, response) => {
-  response.status(200).send('TEST /testget');
+  response.send('TEST /testget');
 });
 //------------------------------------------
 app.post('/testpost', (request, response) => {
-  response.status(201).send('POST /testpost');
+  response.redirect('/');
 });
 //------------------------------------------
 app.get('/test/:id', (request, response) => {
-  response.status(200).send(request.params.id);
+  response.send(request.params.id);
 });
 
 
@@ -55,6 +60,6 @@ app.get('/test/:id', (request, response) => {
 const port = 3000;
 
 app.listen(port, () => {
-  console.log(`Connected to http://127.0.0.1:${port}`);
+  console.log(`Connected to ${port}`);
 });
 
