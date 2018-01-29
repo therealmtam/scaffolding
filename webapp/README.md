@@ -123,6 +123,7 @@
   module.exports = {
     "extends": "airbnb-base",
     "plugins": [
+        "jsx-a11y",
         "react",
         "import"
     ]
@@ -133,15 +134,16 @@
 
   ```javascript
   npm install --save-dev eslint
-  npm install --save-dev eslint-config-airbnb-base
+  npm install --save-dev eslint-config-airbnb
+  npm install --save-dev eslint-plugin-jsx-a11y
   npm install --save-dev eslint-plugin-import
   npm install --save-dev eslint-plugin-react  //React specific linting rules for ESLint https://github.com/yannickcr/eslint-plugin-react
 
   //OR
-  npm install --save-dev eslint eslint-config-airbnb-base eslint-plugin-import eslint-plugin-react
+  npm install --save-dev eslint eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react
   ```
 
-  >Reference: https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base
+  >Reference: https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb
 
   >[The ESlint extension in VScode will read the .eslintrc file and work.](https://travishorn.com/setting-up-eslint-on-vs-code-with-airbnb-javascript-style-guide-6eb78a535ba6)
   To disable the linter in any document of code, write the following at the top of the document:
