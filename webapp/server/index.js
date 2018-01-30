@@ -8,7 +8,7 @@ const app = express();
   These modules are functions developed by us.
   Note: the relative file path.
 */
-const helperModule = require('./helpers/helper1.js');
+const HelperModule = require('./helpers/helper1.js');
 //-------------------------------------------------------------------
 // MIDDLEWARE USED PRIOR TO ALL ROUTING:
 /*
@@ -57,7 +57,7 @@ app.get('/test/:id', (request, response) => {
 
 //-------------------------------------------------------------------
 // SETUP CONNECTION TO SERVER:
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Connected to Port ${port}`);

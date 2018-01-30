@@ -1,5 +1,5 @@
-//README:
-//This file contains database CRUD functions.
+// README:
+// This file contains database CRUD functions.
 /*
   BEFORE USING:
   1) Make sure Redis is installed.
@@ -16,9 +16,9 @@
 //------------------------------------------
 const redis = require('redis');
 //------------------------------------------
-const client = redis.createClient();  //Note: Async process
+const client = redis.createClient(); // Note: Async process
 //------------------------------------------
-//CRUD FUNCTIONS:
+// CRUD FUNCTIONS:
 
 const create = (id, val, callback) => {
   client.set(id, val, (err, result) => {
@@ -42,8 +42,7 @@ const read = (id, callback) => {
 };
 
 module.exports = {
-  create: create,
-  read: read,
-}
-
+  create,
+  read,
+};
 

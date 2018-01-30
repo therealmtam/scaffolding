@@ -76,6 +76,6 @@ const read = (id, callback) => {
 };
 
 module.exports = {
-  read: read,
-  create: create,
+  read,
+  create,
 };
