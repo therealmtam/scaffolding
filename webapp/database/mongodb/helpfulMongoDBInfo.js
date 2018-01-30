@@ -15,8 +15,6 @@
   use that model. Anything stored that uses that model will be a part of
   that collection of documents.
 
-
-
 //-----------------------------------------------
 // HOW TO ACCESS MONGODB VIA TERMINAL:
 
@@ -50,3 +48,22 @@
 
   mongoose.connect('mongodb://localhost/myapp', <insert callback function here> );
 
+//-----------------------------------------------
+// HOW TO CLEAR THE CONTENTS IN A COLLECTION, SCRIPT:
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+const documentSchema = new Schema({
+  fileId: {type: Number, index: true },
+  fileName: String,
+  fileType: String,
+});
+const ModelInCollection1 = mongoose.model('collection1', documentSchema);
+const DeleteAll = function () {
+  mongoose.connect('mongodb://localhost/myapp', () => {
+    ModelInCollection1.remove({}).exec().then(result => {
+      console.log('Removed Collection1', result.result);
+    }).then(mongoose.connection.close());
+  });
+};
+DeleteAll();
