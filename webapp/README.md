@@ -2,6 +2,7 @@
   These instructions are for creating the scaffolding of a React + Node + Express + (Choice of DB(s)).
   
 ## Table of Contents
+<a name="part1"></a>
 [**PART I**](#1) - Development Setup:
 1. [Create file structure](#1-1)
 1. [Initialize Node Project](#1-2)
@@ -10,6 +11,7 @@
 1. [Add .gitignore file](#1-5)
 1. [Add Airbnb ESLint](#1-6)
 
+<a name="part2"></a>
 [**PART II**](#2) - Technology Setup:
 1. [Setup Express](#2-express)
 1. [Setup React](#2-react)
@@ -23,7 +25,7 @@
 <a name="1"></a>
 ## Part I
   <a name="1-1"></a>
-  - ([1](#1-1)) Create the following File Structure:
+  - ([1](#part1)) Create the following File Structure:
 
     - `client`
       - `dist`  //folder contains all files that will be distributed
@@ -38,7 +40,7 @@
       - `index.js` //file contains routing and setting up server connection
 
   <a name="1-2"></a>
-  - ([2](#1-2)) Initialize node project by running:
+  - ([2](#part1)) Initialize node project by running:
 
     `npm init`
 
@@ -49,7 +51,7 @@
     - `npm install --save ____`
 
   <a name="1-3"></a>
-  - ([3](#1-3)) Add scripts to package.json:
+  - ([3](#part1)) Add scripts to package.json:
 
     ```javascript
     "scripts": {
@@ -58,7 +60,7 @@
     }
     ```
   <a name="1-4"></a>
-  - ([4](#1-4)) Add Webpack to bundle React modules and Babel to transpile the modules before bundling:
+  - ([4](#part1)) Add Webpack to bundle React modules and Babel to transpile the modules before bundling:
 
     > Create a webpack.config.js file in the root directory with the following code:
 
@@ -110,13 +112,13 @@
     }
     ```
 <a name="1-5"></a>
-- ([5](#1-5)) Add .gitignore file to ignore:
+- ([5](#part1)) Add .gitignore file to ignore:
 
   - `node_modules`
   - `bundle.js`
 
 <a name="1-6"></a>
-- ([6](#1-6)) Add Airbnb ESLint:
+- ([6](#part1)) Add Airbnb ESLint:
 
   >Create a .eslintrc.js file in the root directory and store the following:
 
@@ -155,7 +157,7 @@
 <a name="2"></a>
 ## PART II
   <a name="2-express"></a>
-  - [**Setup Express**](#2-express)
+  - [**Setup Express**](#part2)
     - (1) In <code>webapp > server > index.js</code>, scaffold the following:
       ```javascript
       // MODULES:
@@ -229,7 +231,7 @@
         in <code>webapp > server > helpfulNodeInfo.js</code>
         
   <a name="2-react"></a>
-  - [**Setup React**](#2-react)
+  - [**Setup React**](#part2)
     - (1) In index.html, add the initial element for React to target:
       ```html
       <div id="app"></div>
@@ -336,10 +338,10 @@
         in <code>webapp > client > components > helpfulReactInfo.js</code>
 
   <a name="2-database"></a>
-  - [**Setup Database**](#2-database)
+  - [**Setup Database**](#part2)
   
       <a name="2-mongodb"></a>
-    - [**Setup MongoDB**](#2-mongodb)
+    - [**Setup MongoDB**](#part2)
       Use the MongoDB scaffolding in the MongoDB folder <code>database > mongodb</code> 
       ```javascript
       // README:
@@ -426,7 +428,7 @@
       ```
     
       <a name="2-postgresql"></a>
-    - [**Setup PostgreSQL**](#2-postgresql)
+    - [**Setup PostgreSQL**](#part2)
       Use Postgres scaffolding in the Postgres folder <code>database > postgres</code>.
       Note that the CRUD functions are located in each individual model instead of in
       the index.js file.
@@ -505,7 +507,7 @@
       ```
       
       <a name="2-redis"></a>
-    - [**Setup Redis**](#2-redis)
+    - [**Setup Redis**](#part2)
       Use Redis scaffolding in the Redis folder <code>database > redis</code> 
       ```javascript
       //README:
@@ -558,7 +560,7 @@
       ```
     
   <a name="2-mocha"></a>
-  - [**Setup Mocha & Chai**](#2-mocha)
+  - [**Setup Mocha & Chai**](#part2)
     Use Mocha/Chai scaffolding in the db folder <code>test > db</code>.
     ```javascript
     // HELPFUL MOCHA CHAI TESTING INFO:
@@ -585,7 +587,7 @@
     //-----------------------------------------------
     ```
   <a name="2-jest"></a>  
-  - [**Setup Jest & Enzyme**](#2-jest)   
+  - [**Setup Jest & Enzyme**](#part2)   
     Use Jest/Enzyme scaffolding in the component folder <code>test > components</code>.
     ```javascript
     // HELPFUL REACT TESTING INFO:
