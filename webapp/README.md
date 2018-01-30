@@ -18,7 +18,7 @@
     1. [Setup PostgreSQL](#2-postgresql)
     1. [Setup Redis](#2-redis)
 1. [Setup Mocha & Chai](#2-mocha)
-1. [Setup Jasmine & Enzyme](#2-jasmine)
+1. [Setup Jest & Enzyme](#2-jest)
 
 <a name="1"></a>
 ## Part I
@@ -559,9 +559,87 @@
     
   <a name="2-mocha"></a>
   - [**Setup Mocha & Chai**](#2-mocha)
-  
-  <a name="2-jasmine"></a>  
-  - [**Setup Jasmine & Enzyme**](#2-jasmine)   
+    Use Mocha/Chai scaffolding in the db folder <code>test > db</code>.
+    ```javascript
+    // HELPFUL MOCHA CHAI TESTING INFO:
+    //-----------------------------------------------
+    // Instructions for using Mocha & Chai:
+    /*
+      1) npm install:
 
-  
+      npm install --save-dev mocha
+      npm install --save-dev chai
+
+      OR
+
+      npm install --save-dev mocha chai
+
+      2) Create a script in package.json to run all tests
+      contained in the test > db folder:
+
+      "test-db": "mocha -- tests/db/*.js"
+
+      (Make sure to comment all text because the script will read
+      this document as well)
+    */
+    //-----------------------------------------------
+    ```
+  <a name="2-jest"></a>  
+  - [**Setup Jest & Enzyme**](#2-jest)   
+    Use Jest/Enzyme scaffolding in the component folder <code>test > components</code>.
+    ```javascript
+    // HELPFUL REACT TESTING INFO:
+    //-----------------------------------------------
+    // Instructions for using Jest/Enzyme:
+    /*
+      References:
+      https://facebook.github.io/jest/docs/en/webpack.html
+      https://www.youtube.com/watch?v=bMmntkVM4wQ
+
+      1) npm install:
+
+        npm install --save-dev jest
+        npm install --save-dev babel-jest  //this is so jest can read transpiled jsx
+        npm install --save-dev enzyme
+        npm install --save-dev enzyme-adapter-react-16
+        npm install --save-dev identity-obj-proxy
+        npm install --save-dev babel-plugin-transform-es2015-modules-commonjs
+
+        OR
+
+        npm install --save-dev jest babel-jest enzyme enzyme-adapter-react-16 identity-obj-proxy babel-plugin-transform-es2015-modules-commonjs
+
+      2) Add the following to package.json:
+
+        "dependencies": {
+        }
+        "devDependencies": {
+        }
+        "jest": {
+          "moduleNameMapper": {
+            "\\.css$": "identity-obj-proxy"
+          },
+          "setupFiles": [
+            "raf/polyfill"
+          ]
+        }
+
+      3) Create a .babelrc file in the root directory and insert the following:
+
+      {
+        "presets": ["react"],
+          "env": {
+          "test": {
+            "plugins": ["transform-es2015-modules-commonjs"]
+          }
+        }
+      }
+
+      4) Create a script in package.json to run the Jest tests
+      contained in the test > components folder:
+
+        "test-jest": "jest"
+    */
+    //-----------------------------------------------
+    ```
  
