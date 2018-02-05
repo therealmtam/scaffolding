@@ -34,3 +34,30 @@ the information.
   on the server without having to use JQuery.
 
 //-----------------------------------------------
+// TABLE ELEMENTS:
+
+<table id="t01" style="width:100%">
+  <caption>Monthly savings</caption>  //the title
+  <tr>                                //the first row contains th = headers
+    <th>Firstname</th>
+    <th colspan='2'>Lastname</th>   //spans 2 columns
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+</table>
+
+  //Use specific targeting for elements such as tables to make it limited in scope.
+  //Note that you can't use class="01" but you can use class"t01"
+
+table#t01, table#t01th, table#t01 td {
+    border: 1px solid black;
+    border-collapse: collapse;  //collapses the borders of each element's box model to show 1 line
+}

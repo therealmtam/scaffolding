@@ -56,3 +56,26 @@ fs.readFile(`${__dirname}/_____`, 'utf8', (err, html) => {
   }
 
 //-----------------------------------------------
+// DELOPYMENT NOTES:
+
+1) Install npm:
+  > sudo apt-get install npm
+  > sudo apr-get update
+
+2) Install node:
+  > curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+  > sudo apt-get install -y nodejs
+  (Reference: https://nodejs.org/en/download/package-manager/)
+
+3) To run node as daemon:
+
+  > sudo npm install -g forever  //this doesn't need to be on the dependencies list
+  > sudo forever start ./server/index.
+
+  (Reference: https://www.youtube.com/watch?v=P4mT5Tbx_KE)
+  (Reference: https://github.com/foreverjs/forever)
+
+  > sudo forever list //this shows all the forever processes running. Note it is different if sudo is omitted
+  > sudo kill _#FOREVER PID_  //this kills the process
+
+

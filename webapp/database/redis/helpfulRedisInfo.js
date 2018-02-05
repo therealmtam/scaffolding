@@ -40,3 +40,21 @@ const ClearCache = function () {
 
 ClearCache();
 //-----------------------------------------------
+// DEPLOYMENT NOTES:
+
+1) To install Redis:
+
+  > sudo apt-get update
+  > sudo apt-get upgrade
+  > sudo apt-get install redis-server
+
+  (Reference: https://www.rosehosting.com/blog/how-to-install-configure-and-use-redis-on-ubuntu-16-04/)
+
+2) To start Redis as daemon:
+
+  > sudo redis-server --daemonize yes
+
+3) To kill Redis daemon:
+
+  > sudo killall redis-server
+

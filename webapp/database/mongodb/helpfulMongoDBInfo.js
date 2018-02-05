@@ -67,3 +67,25 @@ const DeleteAll = function () {
   });
 };
 DeleteAll();
+
+//-----------------------------------------------
+// DEPLOYMENT NOTES:
+
+1) To run the mongo daemon, use the following command:
+
+  > mongod --dbpath ./database/data --fork --logpath /dev/null
+
+  (Reference: https://stackoverflow.com/questions/15963147/install-mongodb-child-process-failed-exited-with-error-number-100)
+
+2) To kill the daemon, run:
+
+  > mongod --shutdown --dbpath ./database/data
+
+  (Reference: https://docs.mongodb.com/master/tutorial/manage-mongodb-processes/)
+
+3) To install MongoDB on a linux comp:
+
+  > sudo apt-get install mongodb
+  > sudo apt-get update
+  (Reference: https://www.youtube.com/watch?v=WH5GgHaEy7E&t=189s)
+
