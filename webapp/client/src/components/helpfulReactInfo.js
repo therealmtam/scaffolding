@@ -68,7 +68,21 @@
 
        and if React is not imported into that module, the
        execution context will not contain React.createElement
-       as a method.
+       as a method which is needed during transpilation.
+
+       Transpilation is run prior to the code running but it runs in the same sequence as
+       the code will be read by the JS Runtime Engine. If a react component
+       does not return a React library related component (i.e., anything from React or in JSX),
+       then it is not necessary to import React from 'react' into that module because
+       that module is then just like any JS module and can be read by the JS engine during runtime
+       without issue.
+
+        e.g., the following does not require React to be imported:
+        const ElementText = () => (
+          'hello'
+        );
+
+      https://stackoverflow.com/questions/44404730/why-do-you-need-to-import-react-multiple-times-in-parent-and-child-components
 
     b) You can Export in different ways:
 
