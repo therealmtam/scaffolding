@@ -107,7 +107,7 @@
 
   class A {
     constructor( __input params when creating class__ ) {
-      let counter = 0;  //this is a variable that only exists in this scope (closuer) and can be modified by methods
+      let counter = 0;  //this is a variable that only exists in this scope (closure) and can be modified by methods
 
       //This is where you declare properties of the class.
       this.prop1 = input;
