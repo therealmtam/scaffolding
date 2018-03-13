@@ -97,8 +97,48 @@ See the NodeJS notes for a better idea.
 
 //-----------------------------------------------
 // NOTES:
+
+  //STREAM-----------------------------------------
+  https://www.youtube.com/watch?v=gQPhH0roJ9s
+  A Writeable stream => allow NodeJS to write to a stream
+    https://nodejs.org/api/stream.html#stream_writable_streams
+  A Readable stream => allow NodeJS to read from a stream
+    https://nodejs.org/api/stream.html#stream_readable_streams
+  A Duplex => can read and write to a stream
+
+  There is a concept of a stream. Then there is a concept of reading and writing
+  from and to that stream. The stream can be created for different applications.
+  Using the 'fs' library, you a stream can be created and read from when reading the
+  contents of a file.
+
+    let myReadStream = fs.createReadStream(__dirname + '/document1.txt', 'utf8');
+
+  When this is variable 'myReadStream' is declared and the value
+  (fs.createReadStream...) is executed, a stream is created at that very moment and
+  is referenced by the variable myReadStream and the only way to get access to the
+  packets sent in that stream is to:
+
+    Create an event emitter for the chunks of data sent from buffer through
+    the stream and do something with it (e.g. write it to a writestream object);
+
+    let writeStream = fs.writeStream(__dirname + '/document1Copy.txt');
+    myReadStream.on('data', (chunk) => {
+      console.log(chunk) or writeStream.write(chunk)
+    });
+
+    (note that the chunks of data come in asynchronously so this event emitter will fire
+    whenever a new chunk of data is passed in from the buffer);
+
+    You can also just Pipe the chunks of data directly to the write stream:
+
+    let writeStream = fs.writeStream(__dirname + '/document1Copy.txt');
+    myReadStream.pipe(writeStream) //of for a response myReadStream.pipe(response)
+
   //-----------------------------------------------
   READ/WRITE STREAM vs READ:
+
+  https://www.youtube.com/watch?v=E3tTzx0Qoj0
+  https://www.youtube.com/watch?v=DvlCT0N7yQI
 
   let myReadStream = fs.createReadStream(__dirname + '/document.txt', 'utf8'//omit this if sending binary data);  //every read stream needs a write stream to send the buffered data to.
   let writeStream = fs.writeStream(__dirname + '/newdoc.txt' //location to write it to)
@@ -123,13 +163,14 @@ See the NodeJS notes for a better idea.
     If the content-type is html, the browser by default knows this type and will interpret incoming data as such without setting headers or even an encoding type for the readstream.
 
       app.get('/', (request, response) => {
+        response.writeHead(200, {'Content-Type': 'text/plain'});
         let myReadStream = fs.createReadStream(__dirname + '/index.html');
         myReadStream.pipe(response);
-      })
+      });
 
     If the content-type is plain-text, the browser by default also knows this type and will interpret the incoming data as such without setting headers or even an encoding type for the readstream.
 
-    If the content-type is json, the headers need
+    If the content-type is json, the headers need 'application/json'.
 
   //-----------------------------------------------
   HEADERS:
@@ -137,10 +178,10 @@ See the NodeJS notes for a better idea.
   Headers are used to tell the endpoint information about what is in the Request or the Response.
   A browser, when entering a URL and sending a GET request to an endpoint, will send its own set of headers
   as seen below from Chrome.
+
   You can then filter the requests and adjust responses based on certain criteria such as recieving the Content-Type
   headers in the 'accept' header can give a server clues about what to send back to the user and the 'user-agent' can
   also help tell the endpoint about what browser the request came from so that it can send back appropriate content.
-
 
   response.writeHead(200, { 'Content-Type': 'text/html' } );  //writes the headers for the response to tell the browser it will get text that is html
 
@@ -173,6 +214,21 @@ See the NodeJS notes for a better idea.
     accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'en-US,en;q=0.9' }
+
+
+  WHY USE HEADERS:
+
+  Note that the browser accepts many different content-types in every get request (see above).
+  This enables the server to send practically any type of data (json, text, html, binary photo data)
+  and the browser will be able to interpret it correctly without you specifying the content-type or
+  any data in the headers when sending back a response to a http request.
+
+  The use of HEADERS comes more into play when in your JS code, you are making API calls
+  or other HTTP requests where the headers are not specified by the browser by default.
+  Then depending on the content you want, the endpoint, and the http method, the server
+  can send you back the proper info to you. And on your end, if the content they send back
+  is not what you requested, the headers can help you determine that and take subsequent
+  action in the callback.
 
   //-----------------------------------------------
   TCP server vs UDP =>
@@ -235,49 +291,141 @@ See the NodeJS notes for a better idea.
       figure out the performance of a given server as more tasks are given to it, even synchronously
       executed tasks.
   //-----------------------------------------------
-  Process - Global Node Object:
+  PROCESS - Global Node Object that is created when a Node process is created and has properties that allow you
+  to access different parts of the process or store data on:
 
-  The process object is a global that provides information about, and control over, the current Node.js process.As a global, it is always available to Node.js applications without using require().
+  The process object is a global that provides information about, and control over, the CURRENT Node.js process.As a global, it is always available to Node.js applications without using require().
 
   In any Node environment, you can type in process to find all the properties it has:
     ~ > Node //runs a node environment
     >process  //when this is run, there are many global properties
 
+  //PROCESS.ENV---------------------------------------------
+  The process.env property returns an object containing the user environment.
+
   It is used by HEROKU to specify the port number for the server using:
 
-    process.env.PORT
+  process.env.PORT
 
-  Any user created variables in the environment will disappear once the runtime environment is exited.
+  Use: 'printenv' in the command terminal to see the environment variables
 
-  Process can create a read and writeable streams:
+  Any user created variables in the environment will disappear once the process (the bash shell) is exited.
+  So to set permanenet environment variables so that it is accessible in a script as process.env,
+  you need to set them in your .bash_profile, or .profile etc. (See the digital ocean article on what document
+  to place them in because there is a sequence to how printenv will go and find the environment variables
+  to print.).
+
+  https://stackoverflow.com/questions/7501678/set-environment-variables-on-mac-os-x-lion
+  https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps
+
+    ex. in the .bash_profile:
+      export NEWVAR='JIMMY' //note that there are no spaces between the variable = and value
+
+  You can temporarily set environment variables for a bash process by typing in the same export command but
+  that variable will not exist once that bash terminal is closed. 
+
+  //PROCESS.ARGV---------------------------------------------
+  https://nodejs.org/docs/latest/api/process.html#process_process_argv
+  https://www.youtube.com/watch?v=yTJ9OJmbiHU
+
+  The process.argv property returns an array containing the command line arguments
+  passed when the Node.js process was launched.
+
+  When running a node script, you can specify va in the commandline to create
+  arguments that will then be located in the PROCESS.ARGV array of global
+  variables:
+
+        > node script.js _argument_1_ _argument_2_ _argument_3_
+        (e.g. > node script.js x=10 hello world =>
+            if process.argv is console logged in the script.js the terminal will show:
+            ['/usr/local/bin/node',
+              '/Users/MaxTam/Desktop/development/script.js',
+              'x=10',
+              'hello',
+              'world']
+        )
+
+  //PROCESS.STDIN/STDOUT-------------------------------------
+
+    Process can create a read and writeable streams that you can use to communicate with the Node Process
+    or its child processes using the following objects:
+    https://www.youtube.com/watch?v=gQPhH0roJ9s
 
     Process.stdin:
-      The process.stdin property returns a stream connected to stdin(fd 0).It is a net.Socket(which is a Duplex stream) unless fd 0 refers to a file, in which case it is a Readable stream.
+      The stdin PROPERTY is used to take input through the console.
+
+      The stdin PROPERTY returns a stream connected to stdin(fd 0).It is a net.Socket(which is a Duplex stream) unless fd 0 refers to a file, in which case it is a Readable stream. (Remember a duplex can read and write to
+      a stream (see notes above about streams) and a Readable stream is a stream that can be read from by a writable
+      stream or a pipe. File Descriptors (fd 0/1/2/3...) are handles (identifiers) used to access other input/output
+      process resources such as pipes or sockets.
 
     Process.stdout:
+      The stdout PROPERTY is used to log items to the console.
+
       The process.stdout property returns a stream connected to stdout (fd 1). It is a net.Socket (which is a Duplex stream) unless fd 1 refers to a file, in which case it is a Writable stream.
 
-      process.stdin.setEncoding('utf8');
+        process.stdin.setEncoding('utf8');
 
-      process.stdin.on('readable', () => {
-        const chunk = process.stdin.read();
-        if (chunk !== null) {
-          process.stdout.write(`data: ${chunk}`);
-        }
-      });
+        process.stdin.on('readable', () => {
+          const chunk = process.stdin.read();
+          if (chunk !== null) {
+            process.stdout.write(`data: ${chunk}`);
+          }
+        });
 
-      process.stdin.on('end', () => {
-        process.stdout.write('end');
-      });
+        process.stdin.on('end', () => {
+          process.stdout.write('end');
+        });
 
-    Process.stdout and process.stderr differ from other Node.js streams in important ways:
+        (note: console.log('Hello') === process.stdout.write('Hello\n');)
 
-      - They are used internally by console.log() and console.error(), respectively.
-      - They cannot be closed (end() will throw).
-      - They will never emit the 'finish' event.
-      - Writes may be synchronous depending on what the stream is connected to and whether the system is Windows or POSIX.
+      Process.stdout and process.stderr differ from other Node.js streams in important ways:
 
-    (NOTE: console.log() is a synchronous function)
+        - They are used internally by console.log() and console.error(), respectively.
+        - They cannot be closed (end() will throw).
+        - They will never emit the 'finish' event.
+        - Writes MAY BE (not always) synchronous depending on what the stream is connected to
+        and whether the system is Windows or POSIX.
+
+      (NOTE: Console object's methods are neither consistently synchronous like the browser
+      APIs they resemble, nor are they consistently asynchronous like all other Node.js streams)
+
+      When the following is run as a Node script:
+        process.stdout.write('HELLO!!! Enter some data: ');
+        process.stdin.on('data', (data) => {
+          //do something with data
+        });
+
+    The process.stdin.on event will prevent the Node process from exiting.
+    This means that event listeners in Node JS (which live in the event loop cycle part of the run-time process)
+    will prevent the process from closing unless CTRL C or other means to exit (conditional process.exit();).
+
+  //READLINE--------------------------------------
+  https://nodejs.org/api/readline.html#readline_class_interface
+  https://www.youtube.com/watch?v=H0Tb_cMzbAs
+
+  Readline is a module that provides an interface in the terminal for reading data from
+  a Readable Stream such as process.stdin or a TCP socket etc.
+
+    const readline = require('readline');
+
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    //the question method is used to prompt the user for input via the terminal
+    rl.question('What do you think of Node.js? ', (answer) => {
+      // TODO: Log the answer in a database
+      console.log(`Thank you for your valuable feedback: ${answer}`);
+
+      rl.close();
+    });
+
+  Read line has event listeners and thus will prevent the Node process from exiting until
+  the .close() method is invoked on the Readline object that was created.
+
+
 
 //-----------------------------------------------
 // EXPRESS:
