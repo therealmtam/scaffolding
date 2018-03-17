@@ -195,3 +195,76 @@
     // pass
   }
 
+  //For invalid input or functions/methods that have the potential to be invalid and throw a runtime error:
+
+    Use a conditional and Error object:
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
+
+    methodA...
+    if (!(input === 'valid') throw Error(/*message*/ 'Invalid input') OR throw new Error(/*message*/);
+
+    OR
+
+    if (!(input === 'valid') {
+      throw Error(/*message*/ 'Invalid input') OR throw new Error(/*message*/);
+    }
+
+      //note this Error object contains extra properties:
+        0) Error.name => it will show the type of error thrown if not by you.
+        1) Error.message => the message you define in the Error object.
+        2) Error.filename => the filename where line of code is
+        3) Error.lineNumber => line number of the error
+
+    This will throw the error until it reaches a catch block:
+
+    try{
+      methodA();
+    } catch (err) {
+      console.log(err.name);
+      console.log(err.message);
+      console.log(err.filename);
+      console.log(err.lineNumber);
+    }
+
+
+//-----------------------------------------------
+// DESIGN:
+
+- All interfaces with the User should be one component.
+- The Actions (function executions) that result from User request or state change in the interface should
+be in the interface if the result manipulates interface state. Otherwise it should be in a separate component
+if it impacts components that can exist without the interface.
+
+
+// FUNCTIONAL PROGRAMMING:
+
+https: //medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0
+
+Functional programming means constructing code using functions to display what you are doing.
+
+Those functions are:
+- Pure functions
+- Use function composition (Function composition is the process of combining two or more functions in order to produce a new function or perform some computation such as chaining function using f1.f2 or .map().reduce())
+- Avoid shared state (don't share state between the scope that calls it and the internal scope of the function)
+- Avoid mutating state (use copies of key variables to avoid mutating the state of an object that may be used by other parts of the function and expect it to be in the state it left it at)
+- Avoid side effects (they do only the one thing which is stated in the function name)
+
+note: const does not prevent mutation of objects, it only prevents mutation of primitive values.
+
+Functional programming's requirements allow you to decouple and detangle the overlap between interfaces in code.
+It also abstracts the computation as much as possible so that the computation reads like a sentence and doesn't
+require you to think through what the logic is doing.
+
+ex: Functional Programming Way (shows WHAT is going on at a more abstract, sentence, level):
+      const totalOutput = programmerOutput
+        .map(output => output.linesOfCode)
+        .reduce((totalLines, lines) => totalLines + lines);
+
+    Imperative Programming Way (shows HOW something is happening in code):
+      for (let i = 0; i < programmerOutput.length; i++) {
+        totalOutput += programmerOutput[i].linesOfCode;
+      }
+
+Functional programming forces you to abstract away all the complexity into small, one function functions
+by making it difficult to not have your code look like a sentence if you don't keep abstracting your code
+to smaller chunks that are single sentence describable.
