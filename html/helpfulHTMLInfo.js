@@ -17,6 +17,7 @@
 // FORM DATA:
 
 Forms are able to send POST or GET Requests.
+
 On the server - side, posted data requires
 bodyParser.urlencoded() middleware to extract
 the information.
@@ -30,7 +31,7 @@ the information.
         <input type="submit" value="Submit">
   </form>
 
-        Forms are useful for testing GET and POST routes
+  Forms are useful for testing GET and POST routes
   on the server without having to use JQuery.
 
 //-----------------------------------------------

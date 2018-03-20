@@ -322,7 +322,7 @@ See the NodeJS notes for a better idea.
       export NEWVAR='JIMMY' //note that there are no spaces between the variable = and value
 
   You can temporarily set environment variables for a bash process by typing in the same export command but
-  that variable will not exist once that bash terminal is closed. 
+  that variable will not exist once that bash terminal is closed.
 
   //PROCESS.ARGV---------------------------------------------
   https://nodejs.org/docs/latest/api/process.html#process_process_argv
@@ -469,3 +469,171 @@ See the NodeJS notes for a better idea.
     NodeJS is written in C++ since it utilizes Google's V8 JS engine which is written in C++.
 
     The stack of conversion is Javascript => C++ => Assembly Language => Machine Code.
+
+
+//-----------------------------------------------
+// WHAT IS A LIBRARY
+
+  A library exports helping functions that you can use.
+
+  // Library module called Lib1:
+
+    export default {
+      libFunc1: function () {},
+      libFunc2: function () {},
+      libFunc3: function () {},
+    }
+
+  // In the importing file:
+
+    const Library1 = require('Lib1');
+
+    console.log(Library1);
+      //This will console log:
+      {
+        libFunc1: function () {},
+        libFunc2: function () {},
+        libFunc3: function () {},
+      }
+
+  //  Output of console.log(require('fs')):
+  { constants:
+   { O_RDONLY: 0,
+     O_WRONLY: 1,
+     O_RDWR: 2,
+     S_IFMT: 61440,
+     S_IFREG: 32768,
+     S_IFDIR: 16384,
+     S_IFCHR: 8192,
+     S_IFBLK: 24576,
+     S_IFIFO: 4096,
+     S_IFLNK: 40960,
+     S_IFSOCK: 49152,
+     O_CREAT: 512,
+     O_EXCL: 2048,
+     O_NOCTTY: 131072,
+     O_TRUNC: 1024,
+     O_APPEND: 8,
+     O_DIRECTORY: 1048576,
+     O_NOFOLLOW: 256,
+     O_SYNC: 128,
+     O_SYMLINK: 2097152,
+     O_NONBLOCK: 4,
+     S_IRWXU: 448,
+     S_IRUSR: 256,
+     S_IWUSR: 128,
+     S_IXUSR: 64,
+     S_IRWXG: 56,
+     S_IRGRP: 32,
+     S_IWGRP: 16,
+     S_IXGRP: 8,
+     S_IRWXO: 7,
+     S_IROTH: 4,
+     S_IWOTH: 2,
+     S_IXOTH: 1,
+     F_OK: 0,
+     R_OK: 4,
+     W_OK: 2,
+     X_OK: 1 },
+  Stats: [Function: Stats],
+  F_OK: 0,
+  R_OK: 4,
+  W_OK: 2,
+  X_OK: 1,
+  access: [Function],
+  accessSync: [Function],
+  exists: [Function],
+  existsSync: [Function],
+  readFile: [Function],
+  readFileSync: [Function],
+  close: [Function],
+  closeSync: [Function],
+  open: [Function],
+  openSync: [Function],
+  read: [Function],
+  readSync: [Function],
+  write: [Function],
+  writeSync: [Function],
+  rename: [Function],
+  renameSync: [Function],
+  truncate: [Function],
+  truncateSync: [Function],
+  ftruncate: [Function],
+  ftruncateSync: [Function],
+  rmdir: [Function],
+  rmdirSync: [Function],
+  fdatasync: [Function],
+  fdatasyncSync: [Function],
+  fsync: [Function],
+  fsyncSync: [Function],
+  mkdir: [Function],
+  mkdirSync: [Function],
+  readdir: [Function],
+  readdirSync: [Function],
+  fstat: [Function],
+  lstat: [Function],
+  stat: [Function],
+  fstatSync: [Function],
+  lstatSync: [Function],
+  statSync: [Function],
+  readlink: [Function],
+  readlinkSync: [Function],
+  symlink: [Function],
+  symlinkSync: [Function],
+  link: [Function],
+  linkSync: [Function],
+  unlink: [Function],
+  unlinkSync: [Function],
+  fchmod: [Function],
+  fchmodSync: [Function],
+  lchmod: [Function],
+  lchmodSync: [Function],
+  chmod: [Function],
+  chmodSync: [Function],
+  lchown: [Function],
+  lchownSync: [Function],
+  fchown: [Function],
+  fchownSync: [Function],
+  chown: [Function],
+  chownSync: [Function],
+  _toUnixTimestamp: [Function: toUnixTimestamp],
+  utimes: [Function],
+  utimesSync: [Function],
+  futimes: [Function],
+  futimesSync: [Function],
+  writeFile: [Function],
+  writeFileSync: [Function],
+  appendFile: [Function],
+  appendFileSync: [Function],
+  watch: [Function],
+  watchFile: [Function],
+  unwatchFile: [Function],
+  realpathSync: [Function: realpathSync],
+  realpath: [Function: realpath],
+  mkdtemp: [Function],
+  mkdtempSync: [Function],
+  createReadStream: [Function],
+  ReadStream:
+   { [Function: ReadStream]
+     super_:
+      { [Function: Readable]
+        ReadableState: [Function: ReadableState],
+        super_: [Object],
+        _fromList: [Function: fromList] } },
+  FileReadStream:
+   { [Function: ReadStream]
+     super_:
+      { [Function: Readable]
+        ReadableState: [Function: ReadableState],
+        super_: [Object],
+        _fromList: [Function: fromList] } },
+  createWriteStream: [Function],
+  WriteStream:
+   { [Function: WriteStream]
+     super_: { [Function: Writable] WritableState: [Function: WritableState], super_: [Object] } },
+  FileWriteStream:
+   { [Function: WriteStream]
+     super_: { [Function: Writable] WritableState: [Function: WritableState], super_: [Object] }
+    }
+  }
+
