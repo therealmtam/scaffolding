@@ -189,6 +189,12 @@ value / float
   > SELECT MIN(timestamp) FROM...
   > SELECT MAX(value) FROM...
 
+//Select the Top <# or %> <column name(s) to be displayed> FROM ...
+  //This the TOP refers to the number of rows, so 50% = > 50% of the rows as-is (you need to have already sorted the table that this top will be determined from).
+
+  > SELECT TOP 5 * FROM...  //returns the top 5 rows in the table
+  > SELECT TOP 10 PERCENT column1, column2 FROM...  //returns the top most 10% of all rows in the table
+
 //-----------------------
 //WHERE => is used to Filter records
   Note:
@@ -227,6 +233,20 @@ value / float
 //JOINS => The merging of tables and the resulting output
   https://dev.mysql.com/doc/refman/5.7/en/join.html
   https://www.w3schools.com/sql/sql_join.asp
+  https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
+
+
+  You can't join 2 separate results of join tables. The joining process is a step by step
+  process where you can only move from one join to the next and can't join 2 separate joining processes:
+
+    Ex. This is not possible =>
+      SELECT * FROM (SELECT * FROM t1 INNER JOIN t2 ON t1.c1 = t2.c1) INNER JOIN
+      (SELECT * FROM t1 INNER JOIN t2 ON t1.c1 = t2.c1) ON ___ = ___;
+
+      You can only INNER JOIN onto one continuously JOINING TABLE:
+
+      SELECT * FROM ((Products INNER JOIN Suppliers ON Products.supplierID = Suppliers.supplierID) INNER JOIN Categories ON Products.CategoryId = Categories.categoryId);
+
 
   Joining Statement Structure:
     FROM <t1> <Join Type> <t2> ON <table1s column = table2s column> AND <any other conditionals eg. date > '2018-01-01'>;
@@ -254,7 +274,47 @@ value / float
 
     //This returns a table of 3 columns, with T1 joined with T2 and that set is then joined with T3.
 
-    (Note: use dot notation to specify the column of the table, not the Table(column) syntax used when specifying primary and foreign keys).
+    Notes:
+    1) use DOT NOTATION to specify the column of the table, not the Table(column) syntax used when specifying primary and foreign keys.
+
+    2) WHEN SELECTING COLUMNS OF THE RESULTING JOIN, you must specify the tableName and columnName:
+
+        <tableName>.<tables column>
+
+  Group By => this is unlike ORDER BY since it REDUCES the table into one entry for each element in the
+  specified group column. Now each grouped element's columns can counted (COUNT(column name) as if it were its own table
+
+  ORDER BY RESULT:  GROUP BY RESULT:               => SELECT COUNT(name) as No.OfPersons, Country FROM...
+  Name: Country:    Name:                 Country:    No.OfPersons: Country:
+  james USA         {james, adam, chris}  USA         3              USA
+  Adam  USA         {...,...,...}         Canada      #              Canada
+  Chris USA
+
+  Ex:
+  > SELECT count(country) as countryCount, country FROM Customers GROUP BY Country ORDER BY countryCount desc;
+
+  > SELECT count(country) as countryCount, customerName FROM Customers GROUP BY Country ORDER BY countryCount desc;
+
+      NOTE: this is INCORRECT since the column 'customerName' will only be populated with one of the customerNames
+      that are in the group of customerNames for the country.
+
+  > SELECT Suppliers.SupplierName, COUNT(Suppliers.SupplierName) FROM Products INNER JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID AND CategoryID = 2 GROUP BY Suppliers.SupplierName;
+
+  > SELECT Suppliers.SupplierName, COUNT(Suppliers.SupplierName) as Count FROM Products INNER JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID AND CategoryID = 2 GROUP BY Suppliers.SupplierName ORDER BY Count LIMIT 3;
+
+    // NOTE THAT TOP doesn't work here so LIMIT must be used to limit the number of returned rows.
+    // ALSO NOTE that you ORDER BY the alias
+
+//-----------------------
+//ALTERNATIVE TO JOINS => Getting results from 2 tables based on criteria
+
+  The same effect of a join can be done with the same time complexity by:
+
+  > SELECT table1.columnName, table2.columnName FROM table1, table2 WHERE table1.columnId = table2.columnId;
+
+    is the same as:
+
+  > SELECT table1.columnName, table2.columnName FROM (table1 INNER JOIN table2 ON table table1.columnId = table2.columnId);
 
 
 //-----------------------
@@ -283,6 +343,9 @@ value / float
           ELSE "The quantity is something else"
       END
     FROM OrderDetails;
+
+//-----------------------
+
 
 //-----------------------------------------------
 // MySQL SCRIPTS:

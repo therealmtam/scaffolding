@@ -170,6 +170,12 @@
 
   Promises are about making asynchronous code retain most of the lost properties of synchronous code such as flat indentation and one exception channel.
 
+  run: npm install bluebird
+
+  add: const Promise = require("bluebird");
+
+
+
 
 //-----------------------------------------------
 // Error Handling:
@@ -268,3 +274,13 @@ ex: Functional Programming Way (shows WHAT is going on at a more abstract, sente
 Functional programming forces you to abstract away all the complexity into small, one function functions
 by making it difficult to not have your code look like a sentence if you don't keep abstracting your code
 to smaller chunks that are single sentence describable.
+
+//-----------------
+// VARIABLE NAMING:
+
+    use the _ when naming private variables
+        _privateVariable = #;
+
+    use CAPS when naming constants that are IMPORTANT to the code for others to easily identify it is a constant
+    rather than having to look at the variable declaration to see if it is a constant or not.
+
