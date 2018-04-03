@@ -1,6 +1,6 @@
 ## WEB APP SCAFFOLDING
   These instructions are for creating the scaffolding of a React + Node + Express + (Choice of DB(s)).
-  
+
 ## Table of Contents
 <a name="part1"></a>
 [**PART I**](#1) - Development Setup:
@@ -49,6 +49,8 @@
 
     - `npm install --save-dev ____`
     - `npm install --save ____`
+
+    >What you specify as "main": in package.json will be the file that is searched for if you run nodemon without specifying the target (e.g., nodemon => will search for the "main" document to run);
 
   <a name="1-3"></a>
   - ([3](#part1)) Add scripts to package.json:
@@ -225,29 +227,29 @@
         console.log(`Connected to http://127.0.0.1:${port}`);
       });
       ```
-      
+
     - (2) For Additional Helpful Node Info, see the ever-evolving document
-    
+
         in <code>webapp > server > helpfulNodeInfo.js</code>
-        
+
   <a name="2-react"></a>
   - [**Setup React**](#part2)
     - (1) In index.html, add the initial element for React to target:
       ```html
       <div id="app"></div>
-      
+
       <script type="text/javascript" src="bundle.js"></script>
       ```
       Make sure that bundle.js is AFTER the element. Otherwise if is is in
-      the head, the html parser will read the bundle's React code but 
+      the head, the html parser will read the bundle's React code but
       won't be able to find the targeted element on the DOM yet and throw a runtime error.
-      
+
     - (2) In index.jsx, add the initial React script that renders the React Components
       ```javascript
       import React from 'react';
       import ReactDOM from 'react-dom';
       import App from './components/app.jsx';
-      
+
       ReactDOM.render(<App /> , document.getElementById('app'));
       ```
       ...And npm install the modules:
@@ -258,9 +260,9 @@
       npm install --save react react-dom
       ```
       ...And create a <code>app.jsx</code> file in the <code>components</code> folder.
-      
+
       App.jsx will be the initial React component.
-      
+
     - (3) App.jsx scaffold:
       ```javascript
       import React, { Component } from 'react';
@@ -324,7 +326,7 @@
 
       export default App;
       ```
-      Notes: 
+      Notes:
       - Add documentation to all functions and components
       - Add Prop Types and npm install the module
         ```javascript
@@ -332,17 +334,17 @@
         ```
         Prop Types will throw warnings into the console in case
         an incorrect prop is passed in.
-  
+
     - (4) For Additional Helpful React Info, see the ever-evolving document
-    
+
         in <code>webapp > client > components > helpfulReactInfo.js</code>
 
   <a name="2-database"></a>
   - [**Setup Database**](#part2)
-  
+
       <a name="2-mongodb"></a>
     - [**Setup MongoDB**](#part2)
-      Use the MongoDB scaffolding in the MongoDB folder <code>database > mongodb</code> 
+      Use the MongoDB scaffolding in the MongoDB folder <code>database > mongodb</code>
       ```javascript
       // README:
       // This file contains database CRUD functions.
@@ -426,7 +428,7 @@
         create: create,
       };
       ```
-    
+
       <a name="2-postgresql"></a>
     - [**Setup PostgreSQL**](#part2)
       Use Postgres scaffolding in the Postgres folder <code>database > postgres</code>.
@@ -505,10 +507,10 @@
         DB: sequelize,
       };
       ```
-      
+
       <a name="2-redis"></a>
     - [**Setup Redis**](#part2)
-      Use Redis scaffolding in the Redis folder <code>database > redis</code> 
+      Use Redis scaffolding in the Redis folder <code>database > redis</code>
       ```javascript
       //README:
       //This file contains database CRUD functions.
@@ -558,7 +560,7 @@
         read: read,
       }
       ```
-    
+
   <a name="2-mocha"></a>
   - [**Setup Mocha & Chai**](#part2)
     Use Mocha/Chai scaffolding in the db folder <code>test > db</code>.
@@ -586,8 +588,8 @@
     */
     //-----------------------------------------------
     ```
-  <a name="2-jest"></a>  
-  - [**Setup Jest & Enzyme**](#part2)   
+  <a name="2-jest"></a>
+  - [**Setup Jest & Enzyme**](#part2)
     Use Jest/Enzyme scaffolding in the component folder <code>test > components</code>.
     ```javascript
     // HELPFUL REACT TESTING INFO:
@@ -644,4 +646,4 @@
     */
     //-----------------------------------------------
     ```
- 
+
