@@ -256,6 +256,21 @@ value / float
   INNER JOIN => inner specifies only those values in T1 and T2
     - returns all rows from T1 and T2 that match on the column specified.
 
+  SELF JOIN => compares the table to itself for output:
+    https: //www.w3schools.com/sql/sql_join_self.asp
+
+    Format: (Use A and B to denote the 2 instances of the same table)
+
+      //This Query returns a table where CustomerName1 and CustomerName2 live in the same city.
+      //Note that there can be many CustomerName2's per each CustomerName1 since many people can live in the same city.
+      //As a result, this query will have => CustA CustB San_Jose AND CustB CustA San_Jose => shown in the table.
+
+      SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
+      FROM Customers A, Customers B
+      WHERE A.CustomerID != B.CustomerID  //this is key to comparing values against each other by not having values overlap against itself
+      AND A.City = B.City
+      ORDER BY A.City;  //this orders the results
+
   RIGHT JOIN => right signifies T2
     - returns all rows from T2 (even ones that don't match) AND the values in columns for T1 that match T2
 
@@ -268,6 +283,7 @@ value / float
     3) joining T1 on values not in that column (!=).
     Therefore, 3 nested joins can achieve a FULL OUTER JOIN effect.
     https://stackoverflow.com/questions/4796872/how-to-do-a-full-outer-join-in-mysql
+
 
   Ex:
     > SELECT table1.columnA, table2.columnB, table3.columnC FROM ((table1 INNER JOIN table2 ON table1.columnC = table2.columnC) INNER JOIN table3 ON table1.columnC = table3.columnC);
@@ -316,7 +332,6 @@ value / float
 
   > SELECT table1.columnName, table2.columnName FROM (table1 INNER JOIN table2 ON table table1.columnId = table2.columnId);
 
-
 //-----------------------
   Computation Operators while Filtering:
 
@@ -344,8 +359,13 @@ value / float
       END
     FROM OrderDetails;
 
-//-----------------------
+//-----------------------------------------------
+  AGGREGATE FUNCTIONS:
 
+  GROUP BY => this groups all of the rows of a column
+
+  HAVING <criteria such as COUNT() /> => having allows for filtering criteria following an aggregate function
+      https: //www.w3schools.com/sql/sql_having.asp
 
 //-----------------------------------------------
 // MySQL SCRIPTS:
