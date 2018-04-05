@@ -127,10 +127,44 @@
 #element {
   grid-column-start: < 3; span 3; -1>; grid-column-end: < 4; span 4; -1>
   grid-row-start: < 3; span 3; -1>; grid-row-end: < 4; span 4; -1>
-
-
 }
 
+//------------------
+justify-items: start | end | center | stretch
+  This aligns grid items in the row direction (left/right)
+//------------------
+align-items: start | end | center | stretch
+  This aligns grid items in the column direction (up/down)
+//------------------
+justify-content: start | end | center | stretch | space-around | space-between | space-evenly
+  This aligns a group of grid items within the grid in the row direction if the group of items doesn't fill up the grid.
+//------------------
+align-content: start | end | center | stretch | space-around | space-between | space-evenly
+  This aligns a group of grid items within the grid in the column direction if the group of items doesn't fill up the grid.
+
+//------------------
+auto-fit and auto-fill + repeat() + minmax(min, max):
+
+  To specify an unknown number of columns based on the width of the viewport, you can use =>
+
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+
+  This will auto-fit a number of grid items per row and WRAP THEM if they don't fit, and the minmax range is specified dictating the range of column widths. Without specifying auto-fit, the row will not wrap and just extend on past the viewport.
+
+  The difference between auto-fill and auto-fit is:
+    - auto-fill will calculate if an empty space is available for another element and will place a space there in the row regardless of whether there is another grid element to fill it.
+
+    - auto-fit will too calculate if space is available for another grid item but will check to see if there is an element to place there. If there is no element, then it will distribute the extra space amongst the items in the row OR if each element is fixed width, it will just behave like auto-fill and leave an empty space unless there is another element to fill it.
+
+  https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/
+
+
+  *****
+  THEREFORE, it is best to use this feature of a grid for a responsive design. And the way to use it is to specify:
+
+  grid-template-columns: repeat(auto-fit, minmax());
+
+  Specifying a min-max width range allows for a scaling each grid element which looks more responsive than a fixed width element that will leave the page unbalanced until another grid item can fit in the open space.
 
 //-------------------------------------------------------
 //CSS:
@@ -310,19 +344,23 @@ Parent properties:
 
   flex-direction: row (default) => positions all child elements from left to right / column => positions child elements from top to bottom / row-reverse => right to left / column-reverse => bottom to top
 
+  //----------------------------------------------
   flex-wrap:
 
   nowrap (default) => the flex-items will all be squeezed into the width of the flex-box even if the flex items width is larger than show. So no wrapping will override an elements width in order to smash all child elements within the width of the flex-box
 
     Nowrap does the following: it will override the child elements (flex-items) width and/or height to fit all the elements onto one row or one column UNLESS the text or child elements of the flex-items do not fit within the resized box that Nowrap shrinks all flex-items to. In that case where maybe child elements of the flex-items are too large for the resized flex-items, the flex-items will spill out of the flex-box in the flex-direction specified.
 
-  wrap => given a flex-direction and a flex-box height and width, it will try and fit as many elements as possible horizontally and vertically and the wrapping for a flex-direction:row is in a left to right positioning direction. For flex-diretion: column, the direction is top to bottom stacking of elements.
-    You can also use wrap-reverse which will reverse the direction of wrapping.
-    Depending on the flex-direction:row/column, it may try to first align as many items widthwise instead of vertically and for column, it will try and fit as many items vertically based on an items height.
+    wrap => given a flex-direction and a flex-box height and width, it will try and fit as many elements as possible horizontally and vertically and the wrapping for a flex-direction:row is in a left to right positioning direction. For flex-diretion: column, the direction is top to bottom stacking of elements.
+
+      You can also use wrap-reverse which will reverse the direction of wrapping.
+      Depending on the flex-direction:row/column, it may try to first align as many items widthwise instead of vertically and for column, it will try and fit as many items vertically based on an items height.
 
     Wrapping will NOT override the width or height values of flex-items in order to fit the elements into the flex-box width and height. Instead, if it wraps and can't fit them in, then it will add a scroll bar so you can access the additional items. This is unlike nowrap which will just override the child elements.
 
-  justify-content:
+  //----------------------------------------------
+  justify-content: This refers to the bunching of flex items at the start, end or have space in between.
+
     flex-start (default) => items are aligned to the start of the flex container
 
     flex-end => items are aligned to the end direction of the flex container
@@ -335,7 +373,11 @@ Parent properties:
 
     space-around and space-between ONLY can add space between and before/after the elements IF there is the flex-items are small enough to allow space to be placed between them. If the content inside each flex-item when totalled, fills the width of the flex-box, then there will not be a space placed between items. ALSO, if wrap is used in conjunction with space-around and space-between, the parser will try and fill in as many items into a row or column before it wraps THEN it will see if there is space inbetween the items to then add space-between or space-around. SO the priority is to fit items into the flex-box THEN check to see if space is available then use it to space the items.
 
+  //----------------------------------------------
   align-content (ONLY WORKS IF flex-wrap:WRAP IS SPECIIED): (while justify-content justifies in the flex-direction, align-content works in the other flex-direction (so if flex-direction is row, the align-content will adjust in the column direction))
+
+  Align content refers to the bunching of the flex items to be beginning, end or have space inbetween. It does not refer to the alignment of items along an axis. That is the job of align-items.
+
     stretch (default)
     flex-start
     flex-end
@@ -344,7 +386,11 @@ Parent properties:
 
     There are LIMITATIONS to align-content. It will NOT have an impact if there are not more than 2 lines in the flex-box meaning if the elements dont need to be wrapped and all flex-items fit onto one row, then aligning them vertically can be done instead by align-items:center. IF align-items:center is used when the items need to be wrapped, THEN the outcome is not pretty. So IF wrapped is used, then use align-content:center. IF wrapped is used, use align-items: center.
 
+  //----------------------------------------------
   align-items:
+
+  Align-items is for aligning the flex items along an axis.
+
     stretch (default) => this by default makes all flex-items try and fill either the width (if the flex-direction is column) or height (if the flex-direction is row) of the flex-box even if its content does not fill that space. Flex-items are like a block-element in that regard - taking up as much space as it can.
 
     center => centers all flex-items in the flex-box vertically if the flex-direction is row or horizontally if the flex-direction is column. CENTER REQUIRES A HEIGHT OF THE FLEX-CONTAINER otherwise it doesnt know how to align itself. This is good to center text in a vertical column.
@@ -390,3 +436,43 @@ Child Elements:
 
 USER OF AN AUTO PREFIXER:
   This is used during the build-stage where you add on all the different permutations of the css you just entered (e.g., since there are many browsers supporting various different versions of flex-box, the auto prefixer will append all the different versions so the user's browser will be able to find the applicable one.)
+
+//----------------------------------------------------
+// LINKING WITH ANCHORS:
+
+  Linking with Anchors <a></a>
+
+    Use relative or absolute address:
+      - relatives will have the current path prepended to the relative path
+      - absolute paths must start with href="http://..." or href="https://..."
+
+    Link to email while setting to: / subject: / body: of the email:
+      <a href="mailto:shay@awesome.com?subject=Reaching%20Out&body=How%20are%20you">Email Me</a>
+
+    Link to open a brand new tab:
+      <a href="http://shayhowe.com/" target="_blank">Shay Howe</a>
+
+    Link to spot within a page:
+      <a href="#top">Back to top</a> //where #top refers to the element with id="top"
+
+
+//----------------------------------------------------
+  CSS DESIGN:
+
+  => When to use text-align VS flex + align-items center
+
+  For:
+    <div>
+      <p>Row1</p>
+      <p>Row2</p>
+      <p>Row3</p>
+    </div>
+
+  Where every row is a block element, the text can be centered using text-align to style the div. However, this can lead to overlap between the margins + padding of the <p> elements. If this happens, it is better to use a flex box and center the items using justify-content and align-items both set to center.This adds more lines to the CSS but also offers clear distinction between each element in the div since every element becomes a flex item and won't overlap.
+
+  However, using text-align is good when you want everything centered because setting the div to a flex box will only center the elements relative to the div. It won't center the text inside the p tags unless you explicitly style the p tags as well.
+
+
+=> When to use Flex and Grid:
+
+  Flex is useful in aligning elements in a row or column.
