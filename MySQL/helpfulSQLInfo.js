@@ -359,6 +359,8 @@ value / float
       END
     FROM OrderDetails;
 
+  After using COUNT/AVG/SUM, because the rows must be grouped, the only available parameters to display are the column name which was grouped by and the count/avg/sum.
+
 //-----------------------------------------------
   AGGREGATE FUNCTIONS:
 
@@ -366,6 +368,13 @@ value / float
 
   HAVING <criteria such as COUNT() /> => having allows for filtering criteria following an aggregate function
       https: //www.w3schools.com/sql/sql_having.asp
+
+  SELECT COUNT() (these aggregation functions) require WHERE or GROUP BY etc.
+
+//-----------------------------------------------
+  ORDERING:
+
+  ORDER BY __primary sort criteria___ desc/asc, __2ndary sort criteria____ desc/asc;
 
 //-----------------------------------------------
 // MySQL SCRIPTS:
