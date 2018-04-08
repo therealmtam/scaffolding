@@ -18,11 +18,11 @@ class App extends Component {
     };
   }
 
-  //Fires before render()
+  //Fires before render() (i.e., before this component has been inserted into the DOM)
   componentWillMount() {
   }
 
-  //Fires after render()
+  //Fires after render() (i.e., after this component has been inserted into the DOM)
   componentDidMount() {
   }
 
@@ -46,7 +46,7 @@ class App extends Component {
         />
         <Component2
           list = {['1','2','3']}
-          doThis = {()=>10}
+          doThis = {()=>10} //using arrow functions allows the delegation of "this" to the enclosing context which is this component.
           hashTable = {{obj:1}}
         />
       </div>
