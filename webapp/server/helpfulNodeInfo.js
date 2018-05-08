@@ -332,6 +332,15 @@ See the NodeJS notes for a better idea.
   You can temporarily set environment variables for a bash process by typing in the same export command but
   that variable will not exist once that bash terminal is closed.
 
+  //---------
+  When running a node script, you can specify vars in the commandline BEFORE the 'node' cmd to create
+  arguments that will then be located in the PROCESS.ENV OBJECT of global variables:
+
+      >NODE_PATH='hello' node script.js  =>
+          if process.env is console logged in the script.js the terminal will show: { NODE_PATH: 'hello',...}
+
+  Note: When you specify parameters in the commandline AFTER the 'node' cmd, those vars will be stored in the process.argv array. (See below for how that works).
+
   //PROCESS.ARGV---------------------------------------------
   https://nodejs.org/docs/latest/api/process.html#process_process_argv
   https://www.youtube.com/watch?v=yTJ9OJmbiHU
@@ -339,7 +348,7 @@ See the NodeJS notes for a better idea.
   The process.argv property returns an array containing the command line arguments
   passed when the Node.js process was launched.
 
-  When running a node script, you can specify va in the commandline to create
+  When running a node script, you can specify vars in the commandline to create
   arguments that will then be located in the PROCESS.ARGV array of global
   variables:
 
