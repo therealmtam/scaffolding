@@ -291,6 +291,14 @@ See the NodeJS notes for a better idea.
       figure out the performance of a given server as more tasks are given to it, even synchronously
       executed tasks.
   //-----------------------------------------------
+  GLOBAL - Global is the global object in Node that contains all node global variables that are accessible by all modules.
+
+  To see it: 
+  ~ --> node
+  >global
+
+  global.process === process (see below for info about process). 
+  //-----------------------------------------------
   PROCESS - Global Node Object that is created when a Node process is created and has properties that allow you
   to access different parts of the process or store data on:
 
