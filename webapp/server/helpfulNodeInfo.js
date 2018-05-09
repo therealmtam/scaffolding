@@ -71,6 +71,25 @@ See the NodeJS notes for a better idea.
   scope. There is probably some way to make them global, but that may lead to future errors when a piece of code
   has dependencies you don't know where they are located.
 
+//--------
+  //CREATING YOUR OWN MODULES:
+
+  To create your own modules (i.e. to do this: const MAX = require('./Max');), the parameter in the 'require' function must be of the following format:
+
+  - Create a folder for all the js files or a single js file or json file that module.exports the functions of values that will be used by other modules:
+
+    ex. Max (folder) > test.js (contains module.exports = { fn1: ()=>console.log('test')})
+
+  - Then create an index.js file in the Max (folder) which will be called upon for its exports which will represent the module's exports. So index.js is like the accumulation of all the exports in all of the js or json files in Max. 
+
+    ex. index.js (contains: const TEST = require('./test' or './test.js'); module.exports = { TEST: TEST };')
+
+  - Now in other files where you want to import the module ('./Max'), you can just state:
+
+    ex. const MAX = require('./Max') => and it will lookup the index.js file for the exports.
+
+  - If you want to not have to specify the './' in './Max', and just have require('Max'), you need to locate the module (in this case the Max folder) inside the node_modules folder. Then the module can be found without the './' or any path specification.
+
 //-----------------------------------------------
 // DELOPYMENT NOTES:
 
