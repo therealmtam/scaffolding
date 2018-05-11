@@ -213,6 +213,68 @@ Promise.all([p1, p2, p3]).then(results => {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+//ASYNC AWAIT:
+//-----------------------
+//https://www.promisejs.org/
+{}
+
+//ES6 GENERATORS AND YIELDS:
+//-----------------------
+//https://www.promisejs.org/
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
+{}
+
+//PROMISE.COROUTINE:
+//-----------------------
+//http://bluebirdjs.com/docs/api/promise.coroutine.html
+// Requires node.js 0.12+, io.js 1.0+ or Google Chrome 40+ (which is Jan, 2015 on)
+
+/*
+ Coroutine allows you to write code that appears synchronous but is async.
+ 
+ */
+{
+  const Promise = require('promise');
+  const PromiseCoroutine = require('bluebird').coroutine;
+  // Default version of promises for Node
+
+  const test = PromiseCoroutine(function* (val) {
+    let output = val;
+    
+    console.log('fires first, output is ', output);
+
+    //yield must return a promise
+    outout = yield new Promise(resolve => {
+      setTimeout(() => {
+        let newVal = 500;
+        resolve(newVal);
+      }, 1000);
+    });
+
+    console.log('fires third, output is ', output);
+  });
+
+  test(10);
+  console.log('fires second');
+}
+
+
+
+
+
+
+
 //--------------------------------------------------
 //BLUEBIRD LIBRARY:
 //--------------------------------------------------
