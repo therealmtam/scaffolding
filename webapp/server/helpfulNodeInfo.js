@@ -88,7 +88,9 @@ See the NodeJS notes for a better idea.
 
     ex. const MAX = require('./Max') => and it will lookup the index.js file for the exports.
 
-  - If you want to not have to specify the './' in './Max', and just have require('Max'), you need to locate the module (in this case the Max folder) inside the node_modules folder. Then the module can be found without the './' or any path specification.
+  - If you want to not have to specify the './' in './Max', and just have require('Max'), you need to locate the module (in this case the Max folder) inside the node_modules folder. Then the module can be found without the './' or any path specification. 
+  
+  I think this is because the NODE_PATH is set to the root by default and the root is where node_modules is. If the NODE_PATH is changed upon calling node and creating a node process, then the root will be different.
 
 //-----------------------------------------------
 // DELOPYMENT NOTES:
@@ -352,13 +354,24 @@ See the NodeJS notes for a better idea.
   that variable will not exist once that bash terminal is closed.
 
   //---------
+
+
   When running a node script, you can specify vars in the commandline BEFORE the 'node' cmd to create
   arguments that will then be located in the PROCESS.ENV OBJECT of global variables:
 
       >NODE_PATH='hello' node script.js  =>
           if process.env is console logged in the script.js the terminal will show: { NODE_PATH: 'hello',...}
 
+
   Note: When you specify parameters in the commandline AFTER the 'node' cmd, those vars will be stored in the process.argv array. (See below for how that works).
+
+
+  //NODE_PATH----------------------------------------------
+
+    > NODE_PATH='hello' node script.js
+
+    Note that using 'NODE_PATH=./src/lib' will allow you to specify the root location from which all modules will be found.So when you use require('/*path*/'), the path location root is what is specified by NODE_PATH.
+
 
   //PROCESS.ARGV---------------------------------------------
   https://nodejs.org/docs/latest/api/process.html#process_process_argv

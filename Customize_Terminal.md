@@ -21,6 +21,10 @@ touch .zshrc
 - These files are read upon starting a new shell process. So you can place init commands and customizations inside.
 
 ---
+### **Customizing Color:**
+https://www.youtube.com/watch?v=LXgXV7YmSiU&t=355s
+
+---
 ### **Finding what shell you have:**
 
 To figure out what shell you are defaulted to:
@@ -47,6 +51,8 @@ The order in which MacOS terminal looks for a customization file is:
 
 >bash
 
+### **Add Custom Terminal Commands:**
 
+https://www.youtube.com/watch?v=0liXeoADU6A
 
 
